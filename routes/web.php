@@ -14,3 +14,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('employees',  ['uses' => 'EmployeeController@showAllEmployees']);  
+    $router->get('employees/{id}', ['uses' => 'EmployeeController@showOneEmployee']);
+    $router->post('employees', ['uses' => 'EmployeeController@create']);
+    $router->delete('employees/{id}', ['uses' => 'EmployeeController@delete']);
+    $router->put('employees/{id}', ['uses' => 'EmployeeController@update']);
+});
